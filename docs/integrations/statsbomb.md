@@ -31,14 +31,30 @@ do logo em análises publicadas. Não se presume licença comercial irrestrita.
 
 ## Estado atual
 
-- Catálogo: ingestão auditada em raw; competições e temporadas normalizadas em core.
-- Equipes: carga auditada da Copa 2022 (43/106), com UUIDs e mapeamentos externos.
-- Partidas: consulta e normalização implementadas; tabela criada, sem carga normalizada.
-- API /api/v1/competitions: lê o banco; /providers/statsbomb/competitions consulta a fonte.
+- Catálogo: ingestão auditada; competições e temporadas normalizadas em core.
+- Equipes e partidas: cargas auditadas da Copa 2022 (43/106).
+- Jogadores: cadastro e mapeamento dos 50 listados na final (3869685).
+- Escalações: vínculos de jogador/equipe/partida e classificação inicial validada.
+- Eventos: preservados em raw; adapters extraem ações de participação, relógio e titulares.
+- Analytics: intervalos e durações reconstruídos, versionados e persistidos.
+- API: consultas de competições, temporadas, partidas e participação armazenada.
 
 O campo match_status do dataset indica disponibilidade do dado, não o estado esportivo.
 Horários sem fuso não são convertidos por suposição; kickoff_at permanece vazio.
 Placares ausentes são None, preservando a diferença em relação ao placar zero.
 
-Próximas etapas: persistência auditada de partidas, vínculo de participação por temporada
-e parametrização da carga de equipes. Ainda não há importação automática de todo o catálogo.
+Não usamos os intervalos de posição como fonte direta da duração: na inspeção da
+final, três registros tinham período final anterior ao inicial. A reconstrução
+usa eventos, sem corrigir silenciosamente o material original.
+
+Dados de eventos e frames 360 são representações diferentes. Não presumimos
+tracking contínuo, cobertura integral dos jogadores ou identificação individual
+nos frames públicos. Formações registradas e posições médias das ações exigirão
+normalização própria e não representam automaticamente toda a tática da equipe.
+
+Próximas etapas: normalização geral de eventos da final, contexto tático e
+estatísticas. Depois expandir o fluxo validado aos demais jogos e avaliar novos
+fornecedores. Não existe importação automática de todo o catálogo.
+
+Veja [pipeline de participação](../ingestion/participation.md) e
+[fórmula temporal](../analytics/elapsed-on-field.md).

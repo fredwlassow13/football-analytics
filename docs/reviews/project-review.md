@@ -1,5 +1,9 @@
 # Revisão do projeto
 
+> Registro histórico da primeira revisão. Contagens, validações e limitações abaixo
+> descrevem aquele marco. Para o estado atual, consulte o [README](../../README.md)
+> e a [definição temporal](../analytics/elapsed-on-field.md).
+
 Escopo: arquivos de código, migrações, testes, configuração Python, Docker/Compose,
 GitHub Actions, configuração VS Code e documentação. Arquivos gerados (.venv,
 __pycache__, egg-info e caches) não são fontes mantidas do projeto.

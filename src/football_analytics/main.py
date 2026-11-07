@@ -7,6 +7,9 @@ from sqlalchemy.exc import SQLAlchemyError
 
 from football_analytics.infrastructure.database import get_engine
 from football_analytics.modules.competitions.router import router as competitions_router
+from football_analytics.modules.matches.participation_router import (
+    router as participation_router,
+)
 from football_analytics.modules.matches.router import (
     router as matches_router,
 )
@@ -17,6 +20,7 @@ app = FastAPI(title="Football Analytics", version="0.1.0")
 app.include_router(providers_router)
 app.include_router(matches_router)
 app.include_router(competitions_router)
+app.include_router(participation_router)
 
 
 @app.exception_handler(SQLAlchemyError)

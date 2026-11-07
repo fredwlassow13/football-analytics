@@ -38,3 +38,21 @@ class Match(BaseModel):
     match_date: date
     home_score: int | None
     away_score: int | None
+
+
+class Player(BaseModel):
+    provider: str
+    external_player_id: str
+    name: str
+    nickname: str | None = None
+    nationality: str | None = None
+    birth_date: date | None = None
+
+
+class MatchLineup(BaseModel):
+    provider: str
+    external_match_id: str
+    external_team_id: str
+    external_player_id: str
+    shirt_number: int | None = None
+    is_starter: bool | None = None

@@ -31,8 +31,9 @@ no metadata do SQLAlchemy, para evitar propostas de remoção de tabelas existen
 - GET /api/v1/competitions/{competition_id}/seasons — temporadas do UUID interno.
 
 Essas consultas não chamam StatsBomb. O endpoint providers permanece uma prévia externa.
-Partidas e jogadores ainda não fazem parte desta carga. Equipes são importadas pelo
-pipeline separado `python -m football_analytics.ingestion.world_cup_teams`.
+Esta carga trata somente do catálogo. Equipes e partidas são importadas por
+`world_cup_teams` e `world_cup_matches`. Para jogadores, escalações e cálculo da
+final, consulte [pipeline de participação](participation.md).
 
 ## Testes
 

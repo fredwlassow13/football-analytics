@@ -97,3 +97,15 @@ class StatsBombClient:
             raise ValueError("Competition and season IDs must be positive")
 
         return self._fetch(f"matches/{competition_id}/{season_id}.json")
+
+    def fetch_lineups(self, match_id: int) -> httpx.Response:
+        if match_id <= 0:
+            raise ValueError("Match ID must be positive")
+
+        return self._fetch(f"lineups/{match_id}.json")
+
+    def fetch_events(self, match_id: int) -> httpx.Response:
+        if match_id <= 0:
+            raise ValueError("Match ID must be positive")
+
+        return self._fetch(f"events/{match_id}.json")
