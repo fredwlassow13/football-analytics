@@ -15,6 +15,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<10", "ruff>=0.9,<1", "mypy>=1.14,<2"]
+visualization = ["matplotlib>=3.10,<4"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
