@@ -177,6 +177,12 @@ Checkpoint de fechamento em 11/11/2026: Ruff, formatação e mypy aprovados;
 um aviso de depreciação TestClient/HTTPX. Esse checkpoint não significa que o
 build Docker ou o ciclo completo de migrações tenham sido reexecutados localmente.
 
+Checkpoint de retomada em 11/11/2026, após interceptações e recuperações:
+Ruff, formatação e mypy aprovados; **972 testes passaram** com `TEST_DATABASE_URL`
+apontando para `football_test`, mantendo o mesmo aviso TestClient/HTTPX.
+Os 143 eventos desse novo bloco foram conciliados individualmente com SQL.
+Build Docker e ciclo completo de migrações não foram reexecutados nesta etapa.
+
 ## Análises táticas: estado e roteiro
 
 ### Objetivo e escopo
@@ -201,11 +207,12 @@ preditivos com separação temporal entre treino e avaliação.
 | Formações e posições | Starting XI, Tactical Shift, comparação de registros e linha temporal combinada com presença em campo | Resumos por formação/trecho; não inferir posições ausentes entre registros |
 | Heatmaps individuais | Origens de passes e seleção geral de ações com bola, defensivas, disputas e outras ações; grade, contagens, percentuais, composição e renderização | Filtros explícitos por grupo/tipo, comparação padronizada e integração na API |
 | Heatmaps por equipe | Coordenadas dos eventos disponíveis | Agregação e apresentação próprias |
-| Ações defensivas | Eventos incluídos no mapa geral, com tipos e IDs preservados | Adapters detalhados, subtipos, resultados, classificação e agregações por jogador/equipe |
+| Ações defensivas | Adapters, resumo por jogador/equipe, integração aos listados/participação e mapas por tipo/grupo/período, com IDs e cobertura | API; auditoria reutilizável do instante de cada evento no bloco 5 |
+| Interceptações e recuperações | Contratos e adapters com resultados explícitos e flags ausentes preservados; 143 eventos da final conciliados individualmente com SQL | Agregações por jogador/equipe, recortes comuns e integração ao resumo defensivo |
 | Duelos e desarmes registrados | Contrato, adapter e agregações por jogador/equipe; resultados separados e conferência SQL dos 98 eventos Duel | Integração dos recortes, participação e resumo defensivo; não reduzir resultados distintos a um único booleano |
 | Disputas aéreas | Vitórias explicitamente marcadas e derrotas Aerial Lost, preservando o tipo original; contagens e aproveitamento por jogador/equipe conferidos com SQL | Integração ao resumo defensivo e filtros comuns; não somar novamente eventos já usados em passes ou finalizações |
 | Goleiros | Eventos originais disponíveis e resultados de chutes defendidos normalizados | Adapter de Goal Keeper, vinculação aos chutes e estatísticas por goleiro/equipe |
-| Posse | Sequência e equipe de posse preservadas no contexto | Reconstrução de sequências, definição de duração/percentuais e tratamento de paralisações |
+| Posse | Fragmentos, ataques observados e janelas de paralisação com diagnósticos e proveniência; limites conciliados com SQL | Duração/percentuais com cobertura própria; revisão dos casos de limites incertos |
 
 As implementações principais estão em `ingestion/pass_statistics.py`,
 `shot_statistics.py`, `shot_xg_statistics.py`, `dribble_statistics.py`,
@@ -217,6 +224,9 @@ Os resumos coletivos e a consolidação usam `team_*_statistics.py`,
 Os duelos e resultados aéreos usam `duel_statistics.py`, `team_duel_statistics.py`,
 `aerial_statistics.py`, `team_aerial_statistics.py` e os adapters `duels.py` e
 `aerial_duels.py`.
+Interceptações e recuperações usam os adapters `interceptions.py` e
+`ball_recoveries.py`; definições e checkpoint estão em
+[interceptações e recuperações](docs/analytics/interceptions-and-recoveries.md).
 Os adapters ficam em `integrations/statsbomb/` e os renderizadores em
 `visualization/`.
 
@@ -276,7 +286,57 @@ nem substituem uma nova conferência quando os dados mudarem.
   estão marcadas em 32 passes, oito cortes e uma finalização. A igualdade
   de 41 vitórias e 41 derrotas é um checkpoint desta fonte, não uma exigência
   universal para outro dataset.
-
+- Interceptações e recuperações: 143 eventos conciliados individualmente com SQL,
+  incluindo identidade, ordem, relógio, equipe/jogador e detalhes. Argentina:
+  13 interceptações e 59 recuperações registradas, nove com falha explícita;
+  França: 15 e 56, quatro com falha explícita. Entre as 115 recuperações,
+  101 não têm objeto de detalhes e uma tem somente `offensive=true`.
+  Ausência de `recovery_failure` permanece `null`, sem inferir sucesso.
+- Resumo defensivo integrado: 820 eventos nos nove tipos selecionados,
+  82 resultados aéreos e 49 IDs compartilhados, totalizando 853 fontes
+  únicas. As sobreposições correspondem a 41 Duel/Aerial Lost e oito
+  Clearance com vitória aérea. Os sete recortes foram conciliados com
+  SQL, incluindo jogadores, equipes, categorias, cobertura, resultados
+  específicos de duelos, percentuais aéreos e IDs ordenados.
+  Fontes únicas não equivalem a episódios defensivos ou recuperações
+  de posse. O resumo inclui fontes aéreas de passes e finalizações.
+- Goleiros: 44 eventos e 38 pares explícitos goleiro–chute, todos com
+  evidência nos dois sentidos, sem ambiguidades nesta fonte. Na partida:
+  36 ações, 30 pares, seis gols de Shot sofridos, nove defesas de chutes
+  ao alvo e 15 demais finalizações. As seis ações sem chute correspondem
+  a quatro Keeper Sweeper, uma Collected e uma Punch.
+- Os sete recortes da partida e a disputa separada foram conciliados
+  com SQL por goleiro/equipe, incluindo categorias, pênaltis e IDs.
+  Na disputa: oito pares, seis gols, uma defesa ao alvo e uma finalização
+  para fora.
+- Participação: intervalos e ordem da fonte conferidos nos instantes das
+  36 ações, dos 30 chutes e da atuação do goleiro em cada chute.
+  Lloris e Martínez têm 141 min 24,610 s de elapsed_on_field_ms cada;
+  isso não representa tempo de bola em jogo ou minutos convencionais
+  para indicadores por 90. A participação temporal no período 5 não
+  foi aferida.
+- Fonte de escalações usada nessa conferência: SHA-256
+  `2b00c4cbf027b36ae2ce99f183a0943c649bb5bdcb8324683a8603785beffed5`.
+  A conferência temporal foi executada por script de terminal; sua
+  transformação em validação reutilizável permanece no roteiro.
+- Sequências de posse da fonte: 250 fragmentos, cobrindo 4.386 eventos
+  dos períodos 1–4; 21 eventos da disputa permanecem separados.
+  Composição, metadados e IDs foram conciliados com SQL.
+- Auditoria temporal: 3.272 observações com duração e 1.114 eventos sem
+  duração; 42 términos calculados ultrapassam o primeiro timestamp do
+  fragmento seguinte. Nenhum ultrapassa o fim do próprio período.
+  Os dois recuos de timestamp permanecem sinalizados, sem correção.
+- Três fragmentos têm múltiplos play_pattern e mantêm sua composição.
+  Diferenças temporais não representam automaticamente bola parada,
+  duração de posse ou percentual de posse. Essas definições e a
+  duração/percentual de posse continuam pendentes; a reconstrução operacional de ataques está em [política de ataques](docs/analytics/attack-sequences.md).
+- Criação: 1.301 eventos normalizados e 19 vínculos específicos utilizáveis,
+  todos com evidência nos dois sentidos. Foram confirmadas 17 flags
+  shot_assist e duas goal_assist, sem sobreposição nesta fonte.
+  Classificação, contagens, cobertura e IDs foram conciliados com SQL
+  por jogador/equipe nos sete recortes da partida.
+  Flags ausentes permanecem desconhecidas; gol com vínculo não gera
+  assistência automaticamente. A disputa permanece excluída das contagens.
 ### Definições que devem permanecer explícitas
 
 - **Chutes ao alvo:** `goal`, `saved` e `saved_to_post` na definição atual.
@@ -302,6 +362,12 @@ nem substituem uma nova conferência quando os dados mudarem.
   são preservados: um passe com vitória aérea é o mesmo evento em duas análises,
   não duas ações distintas. O total por jogador/equipe representa resultados
   registrados, não necessariamente episódios únicos na soma das duas equipes.
+- **Interceptações e recuperações:** uma interceptação registrada pode ter resultado
+  de perda; preservar as sete categorias de resultado. Ball Recovery inclui
+  tentativas com falha e recuperações ofensivas. Flags ausentes permanecem `null`;
+  `false` explícito permanece `false`, e `null` explícito na fonte exige revisão.
+  Contar esses eventos não equivale a contar recuperações bem-sucedidas nem
+  mudanças de posse únicas. Não somar eventos relacionados como episódios distintos.
 - **Goleiros:** quantidade de eventos Goal Keeper não equivale a defesas. Vincular
   chutes e ações do goleiro com evidência, sem duplicar o mesmo episódio. Separar
   cobranças durante a partida da disputa de pênaltis. Não chamar xG pré-chute de
@@ -320,7 +386,11 @@ nem substituem uma nova conferência quando os dados mudarem.
   Definir separadamente taxas por tempo e convenções por 90.
 - **Fontes:** preservar payloads, hashes, versões de política/fórmula e eventos de
   origem. Não corrigir coordenadas, relógios ou posições por suposição.
-
+- **Progressão:** política própria `project_dx10_goal_distance25`, versão 1.0.0.
+Exige avanço de pelo menos 10 unidades em x e redução de pelo menos 25%
+da distância inicial ao centro do gol, no quadro nominal StatsBomb.
+Contagens separam passes completos e conduções registradas, preservando
+resultados desconhecidos. Bolas paradas e jogo corrido permanecem incluídos.
 ### Recortes previstos
 
 | Recorte | Períodos |
@@ -350,26 +420,40 @@ concluídos de cálculo não significam persistência ou disponibilidade na API.
    - [x] Reunir resumos por jogador e equipe com recortes padronizados e conciliação dos totais.
    - [x] Definir respostas para jogadores sem ações, sem intervalo no recorte e com evidência ausente.
    - [x] Incluir proveniência e definições nos contratos de cálculo; validar com SQL e testes.
-2. **Defesa e disputas — em andamento; próxima etapa: interceptações e recuperações.**
+2. **Defesa e disputas — núcleo, mapas e integração aos listados/participação implementados e validados na final.**
    - [x] Normalizar Duel, preservar resultados de Tackle e agregar por jogador/equipe; conferir eventos, categorias e IDs com SQL.
    - [x] Normalizar vitórias/derrotas aéreas e agregar contagens/aproveitamento por jogador/equipe; conferir com SQL.
-   - [ ] Normalizar subtipos/resultados de interceptações e recuperações de bola — ponto de retomada.
-   - [ ] Normalizar detalhes e resultados de bloqueios e cortes.
-   - [ ] Tratar pressões, dribles sofridos e faltas, distinguindo tentativas, resultados e grupos de ações.
-   - [ ] Criar estatísticas individuais/coletivas e mapas por tipo/grupo e período.
-   - [ ] Evitar somar eventos relacionados como perdas/recuperações independentes sem uma definição.
-3. **Goleiros.**
-   - [ ] Normalizar tipos e resultados das ações de goleiro e os vínculos disponíveis com chutes.
-   - [ ] Calcular defesas, gols sofridos e demais categorias com critérios explícitos.
-   - [ ] Conciliar jogador, equipe, participação e finalizações adversárias; separar a disputa de pênaltis.
+   - [x] Normalizar resultados de interceptações e flags de recuperações de bola; conferir os 143 eventos e detalhes com SQL.
+   - [x] Normalizar detalhes de bloqueios e cortes; conferir os 95 eventos com SQL.
+- [x] Normalizar pressões, dribles sofridos e faltas, preservando atributos e vínculos; conferir os 484 eventos com SQL.
+- [x] Criar agregações individuais/coletivas com recortes padronizados; conferir contagens, categorias, cobertura e IDs com SQL.
+- [x] Integrar ações, duelos e resultados aéreos ao resumo defensivo, com proveniência e deduplicação por ID de origem.
+- [x] Implementar mapas defensivos por tipo/grupo e período, com equipe/jogador, escala comum, cobertura de posições, PNG/SVG/JSON e conciliação SQL; ver [mapas defensivos](docs/analytics/defensive-maps.md).
+- [x] Integrar o resumo defensivo aos jogadores listados e à participação, distinguindo zero, ausência e evidência desconhecida; conferir os 50 listados nos sete recortes com SQL. Ver [resumo defensivo dos listados](docs/analytics/defensive-roster.md).
+3. **Goleiros — núcleo implementado e validado na final.**
+   - [x] Normalizar tipos, resultados, atributos, coordenadas e vínculos dos 44 eventos Goal Keeper; conferir individualmente com SQL.
+   - [x] Resolver os 38 pares goleiro–chute, preservando evidência nos dois sentidos e diagnósticos de qualidade.
+   - [x] Classificar gols de Shot sofridos, defesas de chutes ao alvo, intervenções em chutes para fora e demais finalizações; preservar combinações que exigem revisão.
+   - [x] Agregar por goleiro/equipe, separando pênaltis, não pênaltis e situação desconhecida; conferir os oito recortes com SQL.
+   - [x] Conciliar por script a participação nos períodos 1–4: 36 ações de goleiro, 30 finalizadores e presença do goleiro nos 30 chutes.
+   - [x] Separar a disputa de pênaltis e conferir suas referências de jogador/equipe.
+   - [x] Aferir participação e elegibilidade no contexto inicial da disputa, sem estender os intervalos da partida; revisão externa vinculada aos hashes, 16 evidências conciliadas com SQL e 10 participantes observados classificados como elegíveis, sem divergências.
+   - [ ] Avaliar mudanças de elegibilidade durante as cobranças.
+   - [x] Implementar a conciliação de gols de Shot e evidências de gol contra, preservando vínculos ambíguos para revisão; conferir na final o placar 3–3 contra SQL, payload de partidas e cadastro, excluindo a disputa.
+- [x] Validar a conciliação em partidas reais com gol contra; conferência independente nos arquivos brutos das 64 partidas incluiu três casos, sem divergências. Ver [evolução e placar](docs/analytics/match-evolution.md).
 4. **Posse, criação e progressão.**
-   - [ ] Reconstruir sequências de posse e ataques, preservando qualidade temporal e paralisações.
-   - [ ] Normalizar assistências, passes para finalização e vínculos passe–chute quando disponíveis.
-   - [ ] Definir progressão de passes/conduções, entradas no terço final e na área e direção dos passes reais.
-   - [ ] Analisar perdas/recuperações por zona, pressão/contrapressão e resultados das sequências.
-   - [ ] Separar bolas paradas e jogo corrido, conforme a cobertura efetiva dos campos.
-   - [ ] Criar evolução temporal e recortes por situação do placar, tratando gol contra e alterações de placar.
-   - [ ] Avaliar xG ao longo do jogo e métricas de criação; documentar fórmulas e cobertura antes de usá-las.
+   - [x] Reconstruir sequências ofensivas observadas e janelas de paralisação, com limites explícitos, casos para revisão e conciliação SQL; ver [política de ataques](docs/analytics/attack-sequences.md).
+   - [ ] Definir duração/percentual de posse com denominador e cobertura próprios; os spans e as janelas observadas não fornecem essas métricas.
+   - [x] Normalizar flags de criação e vínculos específicos passe–chute.
+   - [x] Resolver e classificar vínculos, preservando evidências, desconhecidos e diagnósticos.
+   - [x] Agregar criação por jogador/equipe e período, evitando duplicação entre flags; conferir com SQL.
+   - [x] Definir progressão de passes/conduções, entradas no terço final e na área e direção longitudinal das ações; agregar por jogador/equipe e período, com conciliação SQL na final.
+   - [x] Normalizar Dispossessed e Miscontrol; validar com SQL.
+   - [x] Agregar ações por zona, resultado e pressão, com recortes por jogador/equipe e período; validar com SQL.
+   - [x] Integrar ações e finalizações aos fragmentos de posse; validar vínculos e diagnósticos com SQL.
+   - [x] Separar contexto de bolas paradas e jogo corrido por evento/fragmento, com desconhecidos explícitos, seletor para ações e conciliação SQL; ver [política e cobertura](docs/analytics/play-phases.md).
+   - [x] Criar evolução temporal e recortes por situação do placar, tratando gol contra e alterações de placar; núcleo, seletor e exportação local conferidos nas 64 partidas, com desconhecidos explícitos. Ver [evolução e placar](docs/analytics/match-evolution.md).
+   - [x] Avaliar xG ao longo do jogo e métricas de criação; acumulados e grupos por placar com fórmulas, cobertura e pares passe–chute documentados em [evolução da partida](docs/analytics/match-evolution.md). Integração ao executor/API permanece no bloco 5.
 5. **Integração e expansão.**
    - [ ] Transformar as conferências temporais/espaciais dos scripts em validações reutilizáveis para todos os jogadores.
    - [ ] Criar um fluxo reproduzível por partida, sem IDs fixos nos comandos gerais.
@@ -428,8 +512,69 @@ roteiro; para o inventário atual, usar este README junto ao código e aos teste
 - [Ingestão do catálogo](docs/ingestion/catalog.md)
 - [Pipeline de participação](docs/ingestion/participation.md)
 - [Fórmula temporal e validação da final](docs/analytics/elapsed-on-field.md)
+- [Interceptações e recuperações de bola](docs/analytics/interceptions-and-recoveries.md)
 - [Revisão histórica do projeto](docs/reviews/project-review.md)
 
 Dados fornecidos por **StatsBomb Open Data**. Repositório oficial:
 <https://github.com/statsbomb/open-data>. Consulte suas condições, `LICENSE.pdf`
 e requisitos de atribuição antes de publicar análises ou redistribuir dados.
+
+Checkpoint de 12/11/2026: classificação por play_pattern conciliada com SQL nos
+4.386 eventos dos períodos 1–4. Ruff, formatação e mypy aprovados;
+**1.805 testes passaram**, incluindo PostgreSQL em `football_test`, com o aviso
+TestClient/HTTPX já conhecido. Build Docker e ciclo completo de migrações não
+foram reexecutados. Definições e limites em
+[contexto de jogada](docs/analytics/play-phases.md).
+
+Reconstrução de ataques em 12/11/2026: 389 sequências observadas (286 com limites
+utilizáveis pela política e 103 para revisão); 116 observações de paralisação.
+As 309 evidências de limite foram conciliadas com SQL. Duração e percentual de
+posse permanecem ausentes. Ver [definições e cobertura](docs/analytics/attack-sequences.md).
+
+Validação após a reconstrução: Ruff, formatação e mypy aprovados; **1.827 testes
+passaram**, incluindo PostgreSQL em `football_test`. Permanece um aviso de
+depreciação TestClient/HTTPX. Build Docker e ciclo completo de migrações não
+foram reexecutados nesta etapa.
+
+Mapas defensivos em 12/11/2026: seleção por equipe/jogador, grupo, tipo e períodos;
+853 fontes únicas da final recompostas nos quatro períodos, com IDs/células
+conciliados com SQL. Seis exemplos PNG/SVG/JSON gerados e revisão visual feita.
+Detalhes em [mapas defensivos](docs/analytics/defensive-maps.md). O próximo item do
+bloco 2 é integrar o resumo defensivo aos listados e à participação.
+
+Validação após os mapas: Ruff, formatação e mypy aprovados; **1.848 testes
+passaram**, incluindo PostgreSQL em `football_test` e 21 casos dos mapas.
+Permanece apenas o aviso TestClient/HTTPX já conhecido. Build Docker e ciclo
+completo de migrações não foram reexecutados nesta etapa.
+
+Integração defensiva em 12/11/2026: os 50 listados foram conferidos nos sete
+recortes contra SQL e participação persistida das mesmas fontes. Na partida
+inteira: 33 `observed_events`, dois `zero_with_presence` e 15 `unknown`,
+recompondo as 853 fontes únicas. Ver [definição e conciliação](docs/analytics/defensive-roster.md).
+
+Validação após a integração: Ruff, formatação e mypy aprovados; **1.871 testes
+passaram**, incluindo PostgreSQL em `football_test` e 23 casos da junção defensiva.
+Permanece o aviso TestClient/HTTPX já conhecido. Build Docker e ciclo completo
+de migrações não foram reexecutados nesta etapa.
+
+Checkpoint em 13/11/2026: contexto inicial da disputa da final conferido.
+Dos 50 listados, 22 foram classificados como elegíveis, 13 como inelegíveis
+por substituição e 15 permaneceram desconhecidos. Os 10 participantes
+observados estão entre os elegíveis, sem divergências. Ruff, formatação e
+mypy aprovados; 1.943 testes passaram, com o aviso TestClient/HTTPX já conhecido.
+A revisão é externa ao código e vinculada aos hashes dos payloads.
+
+Checkpoint em 13/11/2026: placar da final conciliado em 3–3, sem divergências,
+com seis gols de Shot, nenhum registro de gol contra e oito finalizações
+da disputa excluídas. Ruff e mypy aprovados; 1.975 testes passaram,
+incluindo PostgreSQL em football_test. Permanece o aviso TestClient/HTTPX.
+
+Checkpoint em 17/11/2026: evolução dentro da partida, xG e criação acumulados,
+com recortes por situação do placar, disponíveis no núcleo e exportador local.
+As 64 partidas foram conferidas contra contadores independentes dos arquivos
+brutos, incluindo três partidas com gols contra, sem divergências. Esta validação
+não executa SQL. Fórmulas, comando e cobertura em
+[evolução da partida](docs/analytics/match-evolution.md).
+Ruff, formatação e mypy aprovados; **2.289 testes passaram e 16 foram ignorados**,
+com o aviso TestClient/HTTPX já conhecido. Integração ao executor/API, duração e
+percentual de posse e mudanças de elegibilidade durante a disputa continuam pendentes.

@@ -1,0 +1,16 @@
+{
+  "policy_version": "1.0.0",
+  "justification": "Revisão do contexto inicial da disputa com base nos registros da fonte e na participação reconstruída. A conclusão se limita aos payloads identificados pelos hashes.",
+  "evidence": [
+    "O primeiro chute da disputa tem source_index 4389.",
+    "A inspeção de Foul Committed e Bad Behaviour antes desse índice encontrou sete cartões amarelos e nenhuma expulsão registrada.",
+    "A reconstrução ao fim da partida identificou 11 jogadores ativos por equipe.",
+    "Não foi identificada necessidade de exclusão para equalizar os grupos iniciais nessa reconstrução."
+  ],
+  "audit": {
+    "events_sha256": "a0b0036d50c10a4c8879d1ee9f24a7502ec2cfb264a61951c8d500dfc897ec35",
+    "lineups_sha256": "2b00c4cbf027b36ae2ce99f183a0943c649bb5bdcb8324683a8603785beffed5",
+    "sent_off_player_ids": [],
+    "excluded_player_ids": []
+  }
+}
