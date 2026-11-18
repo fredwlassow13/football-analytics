@@ -1,0 +1,19 @@
+{
+  "kind": "box",
+  "group_by": "player",
+  "x_metric": "passes.attempted",
+  "match_ids": [
+    3869685
+  ],
+  "title": "Passes tentados por jogador na final",
+  "x_label": "Passes tentados",
+  "style": {
+    "width": 10.0,
+    "height": 8.0,
+    "team_colors": {
+      "779": "#0891b2",
+      "771": "#9333ea"
+    }
+  },
+  "plot_version": "1.3.0"
+}

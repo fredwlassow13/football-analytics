@@ -1,0 +1,16 @@
+{
+  "kind": "histogram",
+  "group_by": "player",
+  "x_metric": "shots.xg",
+  "match_ids": [
+    3869685
+  ],
+  "bins": 12,
+  "title": "Final — distribuição de xG por jogador",
+  "style": {
+    "color": "#d97706",
+    "width": 10.0,
+    "height": 7.0
+  },
+  "x_label": "xG por jogador"
+}

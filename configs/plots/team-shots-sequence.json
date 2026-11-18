@@ -1,0 +1,24 @@
+{
+  "kind": "line",
+  "group_by": "team",
+  "y_metric": "shots.total",
+  "team_ids": [
+    "779",
+    "771",
+    "768",
+    "941"
+  ],
+  "title": "Finalizações por sequência de observações das seleções",
+  "y_label": "Finalizações",
+  "style": {
+    "width": 12.0,
+    "height": 8.0,
+    "team_colors": {
+      "779": "#0891b2",
+      "771": "#9333ea",
+      "768": "#ea580c",
+      "941": "#059669"
+    }
+  },
+  "plot_version": "1.3.0"
+}

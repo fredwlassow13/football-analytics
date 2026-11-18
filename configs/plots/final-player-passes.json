@@ -1,0 +1,20 @@
+{
+  "kind": "bar",
+  "group_by": "player",
+  "x_metric": "passes.attempted",
+  "match_ids": [
+    3869685
+  ],
+  "team_ids": [
+    "779"
+  ],
+  "top_n": 12,
+  "title": "Argentina — passes tentados na final",
+  "style": {
+    "color_by_team": false,
+    "color": "#0891b2",
+    "width": 13.0,
+    "height": 8.0
+  },
+  "x_label": "Passes tentados"
+}

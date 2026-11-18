@@ -1,0 +1,22 @@
+{
+  "kind": "correlation",
+  "group_by": "team",
+  "x_metric": "passes.attempted",
+  "additional_metrics": [
+    "shots.total",
+    "shots.xg",
+    "defense.interceptions"
+  ],
+  "metric_labels": {
+    "passes.attempted": "Passes tentados",
+    "shots.total": "Finalizações",
+    "shots.xg": "xG",
+    "defense.interceptions": "Interceptações"
+  },
+  "title": "Correlações descritivas — equipes por partida",
+  "style": {
+    "width": 12.0,
+    "height": 9.0
+  },
+  "plot_version": "1.3.0"
+}

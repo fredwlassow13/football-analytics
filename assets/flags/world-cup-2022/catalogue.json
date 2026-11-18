@@ -1,0 +1,668 @@
+{
+  "catalogue_version": "1.0.0",
+  "scope": "world_cup_2022_national_teams",
+  "created_at": "2026-11-17T00:45:20.987543+00:00",
+  "asset_source": {
+    "repository": "https://github.com/lipis/flag-icons",
+    "version": "v7.3.2",
+    "aspect_ratio": "4:3",
+    "license": "MIT",
+    "license_path": "LICENSE.txt",
+    "license_sha256": "8f1195d55a2fd315a07d812328470ca9ba2abb78c8d317ff19619d5125e00cea"
+  },
+  "team_mapping_source": {
+    "provider": "statsbomb",
+    "competition_id": 43,
+    "season_id": 106,
+    "matches_sha256": "b9d7516dc9919a825f04c204ca85487958c8a2431e84140a48e944934661efc7"
+  },
+  "teams": [
+    {
+      "provider": "statsbomb",
+      "external_team_id": "779",
+      "source_name": "Argentina",
+      "display_name": "Argentina",
+      "flag_code": "ar",
+      "svg": {
+        "path": "svg/ar.svg",
+        "sha256": "6525d9b1c1e3d204bfd03e3e697812f501920c7acbd0b5aba950e7532860bfa4",
+        "bytes": 3467,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ar.svg"
+      },
+      "png": {
+        "path": "png/ar.png",
+        "sha256": "482c529b6a1b9582d68debb69f5c8c92a7ceddb15e281e59d6bbbfd0e65a03d4",
+        "bytes": 9973,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "792",
+      "source_name": "Australia",
+      "display_name": "Austrália",
+      "flag_code": "au",
+      "svg": {
+        "path": "svg/au.svg",
+        "sha256": "cbb2206c5e59a25d79228306af973666a191e163f0ae337681f447977e6edb18",
+        "bytes": 1296,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/au.svg"
+      },
+      "png": {
+        "path": "png/au.png",
+        "sha256": "605a2350056e90e83f9aedaeb9eb9693acb30bcb64af25e04105299a8ba4177d",
+        "bytes": 7226,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "782",
+      "source_name": "Belgium",
+      "display_name": "Bélgica",
+      "flag_code": "be",
+      "svg": {
+        "path": "svg/be.svg",
+        "sha256": "d6aff6fa4c913404eafd53f91c0a9b240fcecaddc8f0ac2160d362e38469342c",
+        "bytes": 302,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/be.svg"
+      },
+      "png": {
+        "path": "png/be.png",
+        "sha256": "0e3af578409bc24b02c6f75a83a3b712c50c4fb38925b523ca07de914cda1edc",
+        "bytes": 896,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "781",
+      "source_name": "Brazil",
+      "display_name": "Brasil",
+      "flag_code": "br",
+      "svg": {
+        "path": "svg/br.svg",
+        "sha256": "d079a828be244afbfefccae98370ae404766e62e4716cb3e0ef2d9eed487b390",
+        "bytes": 7167,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/br.svg"
+      },
+      "png": {
+        "path": "png/br.png",
+        "sha256": "be7ba711a5740038460645f7af8d1e7dfffbb665024514a88b29042c9e3f73ed",
+        "bytes": 10953,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "2722",
+      "source_name": "Cameroon",
+      "display_name": "Camarões",
+      "flag_code": "cm",
+      "svg": {
+        "path": "svg/cm.svg",
+        "sha256": "c9a327dc0e355739a9f2bc0a91e1293f8e08e13910e718bc63fda35a244acef5",
+        "bytes": 840,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/cm.svg"
+      },
+      "png": {
+        "path": "png/cm.png",
+        "sha256": "11bd29d6cd48c6f622add7ddcfcceac98c494d7a6620787a491de90dc4c70510",
+        "bytes": 1825,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "1833",
+      "source_name": "Canada",
+      "display_name": "Canadá",
+      "flag_code": "ca",
+      "svg": {
+        "path": "svg/ca.svg",
+        "sha256": "345ec9dac057e203f1331b2d3f9f473789864edaee1182a26bc261356bcf72f1",
+        "bytes": 625,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ca.svg"
+      },
+      "png": {
+        "path": "png/ca.png",
+        "sha256": "d9a542cb9792cfaa4c77b3a1ba9aec879822cbb3cf0e42cdef40ccb0c947fbb2",
+        "bytes": 3303,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "795",
+      "source_name": "Costa Rica",
+      "display_name": "Costa Rica",
+      "flag_code": "cr",
+      "svg": {
+        "path": "svg/cr.svg",
+        "sha256": "4775ef01d28b8a887cde3dbe2826466ed77c87aae4d00517c99d4977afdbdc20",
+        "bytes": 290,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/cr.svg"
+      },
+      "png": {
+        "path": "png/cr.png",
+        "sha256": "d9dfc80b245b166acd247e4445b6a64ee505aebd3fb4a65e23afb306783b3274",
+        "bytes": 893,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "785",
+      "source_name": "Croatia",
+      "display_name": "Croácia",
+      "flag_code": "hr",
+      "svg": {
+        "path": "svg/hr.svg",
+        "sha256": "6c9bd3fa4533610a8c54cb1e9da4c894c86d273bde61c8e6c2eb887216cd53c6",
+        "bytes": 31032,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/hr.svg"
+      },
+      "png": {
+        "path": "png/hr.png",
+        "sha256": "5b0c787f1172df74b34cac1b739eeb7ead97d3328da87db278797167c09760a0",
+        "bytes": 8256,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "776",
+      "source_name": "Denmark",
+      "display_name": "Dinamarca",
+      "flag_code": "dk",
+      "svg": {
+        "path": "svg/dk.svg",
+        "sha256": "d2847c0bd7a1fb97977ee51f2f618c5ebc5898dd66ef9804f187613c27bdca1a",
+        "bytes": 236,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/dk.svg"
+      },
+      "png": {
+        "path": "png/dk.png",
+        "sha256": "90a00b49bb75291ef8ea3cb663aefa432a29bcf75db934dd3ee9f62d91b18025",
+        "bytes": 967,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "3565",
+      "source_name": "Ecuador",
+      "display_name": "Equador",
+      "flag_code": "ec",
+      "svg": {
+        "path": "svg/ec.svg",
+        "sha256": "4472b0618e2f5e31d31d16c0d7d811310c33b07d5a101b54f60fcb7ec84d1d4d",
+        "bytes": 28777,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ec.svg"
+      },
+      "png": {
+        "path": "png/ec.png",
+        "sha256": "a098dbd9cd8b66adf47b57dd16e8590db94a0932b89f38ae41231b08374a7d4e",
+        "bytes": 24233,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "768",
+      "source_name": "England",
+      "display_name": "Inglaterra",
+      "flag_code": "gb-eng",
+      "svg": {
+        "path": "svg/gb-eng.svg",
+        "sha256": "53797ba9e2dd9b18cd5344255f4e9ae9fad743ecb628fc9feb98abea4f48f90e",
+        "bytes": 239,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/gb-eng.svg"
+      },
+      "png": {
+        "path": "png/gb-eng.png",
+        "sha256": "ae93863ce654b0bccd9600ba27d90fb65f106618e7cc76c5042a4b80868f0384",
+        "bytes": 966,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "771",
+      "source_name": "France",
+      "display_name": "França",
+      "flag_code": "fr",
+      "svg": {
+        "path": "svg/fr.svg",
+        "sha256": "8cdacc8d79bcf210cdca2777a2c0de1f9e5862526877bd3026c9d59ecdcd4578",
+        "bytes": 231,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/fr.svg"
+      },
+      "png": {
+        "path": "png/fr.png",
+        "sha256": "9fc0139208e6ab31596902f932e7ed1a7e33a54cb836e3652b3e1fcfa876fa34",
+        "bytes": 863,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "770",
+      "source_name": "Germany",
+      "display_name": "Alemanha",
+      "flag_code": "de",
+      "svg": {
+        "path": "svg/de.svg",
+        "sha256": "efd480af5a154a7651f29da23ee0d09dbc892410fb4041898ddf8face336c575",
+        "bytes": 221,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/de.svg"
+      },
+      "png": {
+        "path": "png/de.png",
+        "sha256": "1b8828b2bea3c1bed8130c5323d21e6478bad37040001acdc85ad72abdddcdb9",
+        "bytes": 868,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "4885",
+      "source_name": "Ghana",
+      "display_name": "Gana",
+      "flag_code": "gh",
+      "svg": {
+        "path": "svg/gh.svg",
+        "sha256": "53c55ca455293bceecfe6a5d6b12dc0bb670734c50bfd95cb21dc4ef12197405",
+        "bytes": 293,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/gh.svg"
+      },
+      "png": {
+        "path": "png/gh.png",
+        "sha256": "b161b0111de89d3beda455457b14e0c1a89ed216db64eabbba96aad983d01291",
+        "bytes": 2051,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "797",
+      "source_name": "Iran",
+      "display_name": "Irã",
+      "flag_code": "ir",
+      "svg": {
+        "path": "svg/ir.svg",
+        "sha256": "cb363e09bafbff6de7c2fba6a002ca33f0563dc83a2328d34adb492cf80ca629",
+        "bytes": 15397,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ir.svg"
+      },
+      "png": {
+        "path": "png/ir.png",
+        "sha256": "def0bbe1bcc39b5ac0932399a32ef2ccde5804938804be883f0fe717a4f269ea",
+        "bytes": 6336,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "778",
+      "source_name": "Japan",
+      "display_name": "Japão",
+      "flag_code": "jp",
+      "svg": {
+        "path": "svg/jp.svg",
+        "sha256": "bfea80baf9989383dc4bf7ca594ed95be0df0ff125bfc88d0bfa878eb0198022",
+        "bytes": 470,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/jp.svg"
+      },
+      "png": {
+        "path": "png/jp.png",
+        "sha256": "0b01db389264e1164479331ea3b1f98096fddfd4663dcc97a87efabbe46c84b1",
+        "bytes": 2902,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "794",
+      "source_name": "Mexico",
+      "display_name": "México",
+      "flag_code": "mx",
+      "svg": {
+        "path": "svg/mx.svg",
+        "sha256": "bf69fcf0118ebf04d391c522883b36da521d44169163c290435192930d28a109",
+        "bytes": 85231,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/mx.svg"
+      },
+      "png": {
+        "path": "png/mx.png",
+        "sha256": "8595b14d22c049b1d8fffdff3609fb395933b2804e99228141a779ba9afdd951",
+        "bytes": 13354,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "788",
+      "source_name": "Morocco",
+      "display_name": "Marrocos",
+      "flag_code": "ma",
+      "svg": {
+        "path": "svg/ma.svg",
+        "sha256": "28cfcdecf9675b0a14fbfae176324aea03711edab1a13592cfb7d58e6772b25c",
+        "bytes": 247,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ma.svg"
+      },
+      "png": {
+        "path": "png/ma.png",
+        "sha256": "96eaf3b40b6ee4b7e15816ec5e76cb1f04849ab6abdad23ce02159d581c968b5",
+        "bytes": 2668,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "941",
+      "source_name": "Netherlands",
+      "display_name": "Países Baixos",
+      "flag_code": "nl",
+      "svg": {
+        "path": "svg/nl.svg",
+        "sha256": "8f691f17fe70894537af8e92f2ca47761d353639b0defc15cbe561eb503ab010",
+        "bytes": 225,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/nl.svg"
+      },
+      "png": {
+        "path": "png/nl.png",
+        "sha256": "1ee1aa836f7005679a117ef283bf7892e860dac78f47d24cb090e33b0674e3bf",
+        "bytes": 876,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "789",
+      "source_name": "Poland",
+      "display_name": "Polônia",
+      "flag_code": "pl",
+      "svg": {
+        "path": "svg/pl.svg",
+        "sha256": "369bb3e14ee718df1ee15fd2fb3ad0dae713f78f622e277710fb2b30a313f2aa",
+        "bytes": 219,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/pl.svg"
+      },
+      "png": {
+        "path": "png/pl.png",
+        "sha256": "c7417a21c8e035e1bc28d0b873b390af2c0a782f0709cee9d35c97f14495bb91",
+        "bytes": 871,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "780",
+      "source_name": "Portugal",
+      "display_name": "Portugal",
+      "flag_code": "pt",
+      "svg": {
+        "path": "svg/pt.svg",
+        "sha256": "79fb7f58a45dcef3f1149742fab8817068d962ebeb3179308b72c3ed1f73d4e4",
+        "bytes": 8016,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/pt.svg"
+      },
+      "png": {
+        "path": "png/pt.png",
+        "sha256": "ea712664b4f4c7d228ca45fdcc131a88994bc45a3e5bf0237193e3273ef77744",
+        "bytes": 15464,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "3566",
+      "source_name": "Qatar",
+      "display_name": "Catar",
+      "flag_code": "qa",
+      "svg": {
+        "path": "svg/qa.svg",
+        "sha256": "fb955ef352ff3ba1ea980090c31d5cf15257729d32949d04b18402651e93b986",
+        "bytes": 354,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/qa.svg"
+      },
+      "png": {
+        "path": "png/qa.png",
+        "sha256": "3e2afdb5e9c5db9e5632724c8117ef7953b865e367835106b0a5f94209720d53",
+        "bytes": 2321,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "799",
+      "source_name": "Saudi Arabia",
+      "display_name": "Arábia Saudita",
+      "flag_code": "sa",
+      "svg": {
+        "path": "svg/sa.svg",
+        "sha256": "a199a6b3737f1de2dfc91edf67c168202b7962a648624c0e56715e6c29cbfcde",
+        "bytes": 9982,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/sa.svg"
+      },
+      "png": {
+        "path": "png/sa.png",
+        "sha256": "4a116eab8c7b7c23510fcbb6f7fccfcfa79837c34f6ca3ada74a6780023f9ea1",
+        "bytes": 9642,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "787",
+      "source_name": "Senegal",
+      "display_name": "Senegal",
+      "flag_code": "sn",
+      "svg": {
+        "path": "svg/sn.svg",
+        "sha256": "6437db13c13fa5cc1b121e6b59739902c6583be6db361260873ce2664f666478",
+        "bytes": 421,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/sn.svg"
+      },
+      "png": {
+        "path": "png/sn.png",
+        "sha256": "bbc4ddb5e2dd2017a46b9dc2ccf62428c296025391fb8ae09c753a3c2dd3c277",
+        "bytes": 2349,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "786",
+      "source_name": "Serbia",
+      "display_name": "Sérvia",
+      "flag_code": "rs",
+      "svg": {
+        "path": "svg/rs.svg",
+        "sha256": "b11ea9d481e9ff9316aabcb9ec99831dff650f2c32199ee2300ff67c7ddd9359",
+        "bytes": 181676,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/rs.svg"
+      },
+      "png": {
+        "path": "png/rs.png",
+        "sha256": "13f988943bec4d87880cdd135ecc50b44d681e0fd8d0024a81d53fd8baaeac6b",
+        "bytes": 24424,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "791",
+      "source_name": "South Korea",
+      "display_name": "Coreia do Sul",
+      "flag_code": "kr",
+      "svg": {
+        "path": "svg/kr.svg",
+        "sha256": "7a6cd5b51d0e2841ed8b79b1147ad8a66cf3c09f6344d4a63b5e4413ffa5d15b",
+        "bytes": 1061,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/kr.svg"
+      },
+      "png": {
+        "path": "png/kr.png",
+        "sha256": "11fe74b415293e291ddc1f8ca46be872948ef9905bf10f86b164649046294d3b",
+        "bytes": 7235,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "772",
+      "source_name": "Spain",
+      "display_name": "Espanha",
+      "flag_code": "es",
+      "svg": {
+        "path": "svg/es.svg",
+        "sha256": "1d60aebdd9ecfc669e11ea317a9f5ba8af6a9d6b98a841b9f70d8243e65b60eb",
+        "bytes": 81677,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/es.svg"
+      },
+      "png": {
+        "path": "png/es.png",
+        "sha256": "2f92727a9e55122cdebc339a809015c89e027c772f52f563a2da0b567afc9ddc",
+        "bytes": 14211,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "773",
+      "source_name": "Switzerland",
+      "display_name": "Suíça",
+      "flag_code": "ch",
+      "svg": {
+        "path": "svg/ch.svg",
+        "sha256": "ac676cd39d7032988598ef2dd73f6bebcd767738e3e469705d6a437835ac485c",
+        "bytes": 290,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/ch.svg"
+      },
+      "png": {
+        "path": "png/ch.png",
+        "sha256": "976d31a6dd1418cb8214e6bd995fbb9058cc84e45c40db97445a609891040aff",
+        "bytes": 952,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "777",
+      "source_name": "Tunisia",
+      "display_name": "Tunísia",
+      "flag_code": "tn",
+      "svg": {
+        "path": "svg/tn.svg",
+        "sha256": "8e0274e5762a4d5f783e64f1206dd69008454f750de21d3ba61439d0af3c577c",
+        "bytes": 343,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/tn.svg"
+      },
+      "png": {
+        "path": "png/tn.png",
+        "sha256": "b2aaff6d254c68a2355954a11e2c4266ee52f80372ba1393a6ae3291e02550d5",
+        "bytes": 4476,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "1839",
+      "source_name": "United States",
+      "display_name": "Estados Unidos",
+      "flag_code": "us",
+      "svg": {
+        "path": "svg/us.svg",
+        "sha256": "e7be4240cf57987926673708f09233be1ab6bdf35acc7b86bd32a263f197a2a7",
+        "bytes": 648,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/us.svg"
+      },
+      "png": {
+        "path": "png/us.png",
+        "sha256": "d13fac439b9b4de0971f6961c0f73dbed94b01f78f31cd962d22db0d7f65c68e",
+        "bytes": 4063,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "783",
+      "source_name": "Uruguay",
+      "display_name": "Uruguai",
+      "flag_code": "uy",
+      "svg": {
+        "path": "svg/uy.svg",
+        "sha256": "47656c0bf4961a1f7233841eb78756cd45d074e7d4061b8a1217bba7754a30fe",
+        "bytes": 1724,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/uy.svg"
+      },
+      "png": {
+        "path": "png/uy.png",
+        "sha256": "2d7880df2129ffda1b80ec4eb5da18a4a72c64d5b04061d767064bf87404e681",
+        "bytes": 11715,
+        "width": 320,
+        "height": 240
+      }
+    },
+    {
+      "provider": "statsbomb",
+      "external_team_id": "907",
+      "source_name": "Wales",
+      "display_name": "País de Gales",
+      "flag_code": "gb-wls",
+      "svg": {
+        "path": "svg/gb-wls.svg",
+        "sha256": "61ad944644250599da53b344e16bb40529677a7f35b84aaf6bc81fd18eb09e24",
+        "bytes": 9096,
+        "source_url": "https://raw.githubusercontent.com/lipis/flag-icons/v7.3.2/flags/4x3/gb-wls.svg"
+      },
+      "png": {
+        "path": "png/gb-wls.png",
+        "sha256": "4fda1cf0548553a3938a4afc409f96ee88ac79bd6494e9d5e4b73b23b98b59dd",
+        "bytes": 37378,
+        "width": 320,
+        "height": 240
+      }
+    }
+  ],
+  "png_conversion": {
+    "tool": "resvg-py",
+    "version": "0.5.0",
+    "width": 320,
+    "height": 240,
+    "skip_system_fonts": true
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "kind": "line",
+  "group_by": "player",
+  "y_metric": "passes.attempted",
+  "player_ids": [
+    "5503"
+  ],
+  "team_ids": [
+    "779"
+  ],
+  "title": "Messi — passes tentados por sequência de partidas",
+  "y_label": "Passes tentados",
+  "style": {
+    "width": 12.0,
+    "height": 8.0,
+    "series_colors": {
+      "5503": "#0891b2"
+    }
+  },
+  "plot_version": "1.3.0"
+}

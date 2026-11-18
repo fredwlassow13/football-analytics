@@ -1,0 +1,33 @@
+{
+  "kind": "scatter",
+  "group_by": "team",
+  "aggregation": "per_match",
+  "x_metric": "shots.total",
+  "y_metric": "shots.xg",
+  "size_metric": "passes.attempted",
+  "team_ids": [
+    "779",
+    "771",
+    "768",
+    "941"
+  ],
+  "title": "Finalizações e xG por equipe e partida",
+  "style": {
+    "width": 12.0,
+    "height": 8.0,
+    "team_colors": {
+      "779": "#0891b2",
+      "771": "#9333ea",
+      "768": "#ea580c",
+      "941": "#059669"
+    },
+    "team_markers": {
+      "779": "o",
+      "771": "s",
+      "768": "^",
+      "941": "D"
+    }
+  },
+  "x_label": "Finalizações",
+  "y_label": "xG total"
+}

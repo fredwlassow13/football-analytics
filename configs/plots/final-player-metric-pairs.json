@@ -1,0 +1,29 @@
+{
+  "kind": "pair",
+  "group_by": "player",
+  "x_metric": "passes.attempted",
+  "additional_metrics": [
+    "shots.total",
+    "shots.xg"
+  ],
+  "match_ids": [
+    3869685
+  ],
+  "metric_labels": {
+    "passes.attempted": "Passes tentados",
+    "shots.total": "Finalizações",
+    "shots.xg": "xG"
+  },
+  "title": "Relações entre métricas — jogadores na final",
+  "style": {
+    "width": 13.0,
+    "height": 12.0,
+    "font_size": 8.0,
+    "point_size": 28.0,
+    "team_colors": {
+      "779": "#0891b2",
+      "771": "#9333ea"
+    }
+  },
+  "plot_version": "1.3.0"
+}
