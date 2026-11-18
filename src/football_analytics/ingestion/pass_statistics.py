@@ -18,10 +18,11 @@ class PlayerPassStatistics(BaseModel):
     out: int = Field(ge=0)
     offside: int = Field(ge=0)
     unknown: int = Field(ge=0)
+    injury_clearance: int = Field(default=0, ge=0)
 
     @property
     def not_completed(self) -> int:
-        return self.incomplete + self.out + self.offside
+        return self.incomplete + self.out + self.offside + self.injury_clearance
 
     @property
     def attempted(self) -> int:
@@ -90,6 +91,7 @@ def aggregate_player_passes(
             out=counts["out"],
             offside=counts["offside"],
             unknown=counts["unknown"],
+            injury_clearance=counts["injury_clearance"],
         )
         for (team_id, player_id), counts in sorted(grouped.items())
     ]

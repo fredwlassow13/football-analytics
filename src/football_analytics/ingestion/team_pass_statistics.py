@@ -17,11 +17,12 @@ class TeamPassStatistics(BaseModel):
     out: int = Field(ge=0)
     offside: int = Field(ge=0)
     unknown: int = Field(ge=0)
+    injury_clearance: int = Field(default=0, ge=0)
     external_event_ids: tuple[str, ...]
 
     @property
     def not_completed(self) -> int:
-        return self.incomplete + self.out + self.offside
+        return self.incomplete + self.out + self.offside + self.injury_clearance
 
     @property
     def attempted(self) -> int:
@@ -64,6 +65,7 @@ def aggregate_team_passes(
             offside=sum(player.offside for player in team_players),
             unknown=sum(player.unknown for player in team_players),
             external_event_ids=event_ids,
+            injury_clearance=sum(player.injury_clearance for player in team_players),
         )
 
         if summary.attempted != len(event_ids):
