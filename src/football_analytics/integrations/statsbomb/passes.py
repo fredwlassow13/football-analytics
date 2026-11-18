@@ -13,7 +13,13 @@ from football_analytics.integrations.statsbomb.starting_xi import PlayerReferenc
 class StatsBombPassOutcome(BaseModel):
     model_config = ConfigDict(strict=True)
 
-    name: Literal["Incomplete", "Out", "Pass Offside", "Unknown"]
+    name: Literal[
+        "Incomplete",
+        "Out",
+        "Pass Offside",
+        "Unknown",
+        "Injury Clearance",
+    ]
 
 
 class StatsBombPassType(BaseModel):
@@ -52,6 +58,7 @@ def normalize_passes(
         "Out": "out",
         "Pass Offside": "offside",
         "Unknown": "unknown",
+        "Injury Clearance": "injury_clearance",
     }
 
     result: list[MatchPass] = []

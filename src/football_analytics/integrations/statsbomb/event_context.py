@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, ValidationError
+from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, ValidationError, model_validator
 
 from football_analytics.integrations.base import MatchEventContext, ProviderUnavailable
 from football_analytics.integrations.statsbomb.events import (
@@ -11,8 +11,15 @@ from football_analytics.integrations.statsbomb.starting_xi import TeamReference
 class StatsBombEventPosition(BaseModel):
     model_config = ConfigDict(strict=True)
 
-    id: int = Field(gt=0)
+    id: int = Field(ge=0)
     name: str = Field(min_length=1)
+
+    @model_validator(mode="after")
+    def validate_zero_position(self) -> "StatsBombEventPosition":
+        if self.id == 0 and self.name != "Substitute":
+            raise ValueError("Position ID zero is only supported for Substitute")
+
+        return self
 
 
 class StatsBombEventWithContext(StatsBombEvent):
